@@ -3,7 +3,7 @@ import { instance } from "common/api/baseApi";
 import { ResponseType } from "common/types/types";
 import { TaskPriorities, TaskStatuses } from "common/enum/enum";
 
-export const todolistsAPI = {
+export const todolistsApi = {
   getTodolists() {
     return instance.get<TodolistType[]>("todo-lists");
   },
@@ -14,10 +14,15 @@ export const todolistsAPI = {
     const promise = instance.delete<ResponseType>(`todo-lists/${id}`);
     return promise;
   },
-  updateTodolist(id: string, title: string) {
-    const promise = instance.put<ResponseType>(`todo-lists/${id}`, { title: title });
-    return promise;
+  // updateTodolist(id: string, title: string) {
+  //   const promise = instance.put<ResponseType>(`todo-lists/${arg.id}`, { title: arg.title });
+  //   return promise;
+  // },
+
+  updateTodolist(arg: UpdateTodolistTitleArgType) {
+    return instance.put<ResponseType>(`todo-lists/${arg.id}`, { title: arg.title });
   },
+
   getTasks(todolistId: string) {
     return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`);
   },
@@ -77,4 +82,20 @@ type GetTasksResponse = {
   error: string | null;
   totalCount: number;
   items: TaskType[];
+};
+
+export type UpdateTaskArgType = {
+  taskId: string;
+  domainModel: UpdateDomainTaskModelType;
+  todolistId: string;
+};
+
+export type RemoveTaskArgType = {
+  todolistId: string;
+  taskId: string;
+};
+
+export type UpdateTodolistTitleArgType = {
+  id: string;
+  title: string;
 };

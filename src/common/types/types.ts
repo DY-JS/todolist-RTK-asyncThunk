@@ -3,3 +3,9 @@ export type ResponseType<D = {}> = {
   messages: Array<string>;
   data: D;
 };
+
+export enum ResultCode {
+  Success = 0,
+  Error = 1,
+  Captcha = 10,
+}

@@ -2,8 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk } from "app/store";
 import { appActions } from "app/app.reducer";
 import { clearTasksAndTodolists } from "common/actions/common.actions";
-import { handleServerAppError, handleServerNetworkError } from "common/utils";
+// import { handleServerAppError, handleServerNetworkError } from "common/utils";
 import { authAPI, LoginParamsType } from "features/auth/authApi";
+import {handleServerAppError, handleServerNetworkError} from "common/utils";
+// import {handleServerAppError} from "common/utils/handleServerAppError";
+// import {handleServerNetworkError} from "common/utils/handleServerNetworkError";
+
 
 const slice = createSlice({
   name: "auth",
